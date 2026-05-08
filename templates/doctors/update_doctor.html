@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ✏ Update Doctor
+</h1>
+
+<div class="page-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+
+            <label>Doctor ID</label>
+
+            <input type="number"
+                   class="form-control"
+                   value="{{ doctor.doctor_id }}"
+                   readonly>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Full Name</label>
+
+            <input type="text"
+                   name="full_name"
+                   class="form-control"
+                   value="{{ doctor.full_name }}"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Specialization</label>
+
+            <input type="text"
+                   name="specialization"
+                   class="form-control"
+                   value="{{ doctor.specialization }}"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Phone</label>
+
+            <input type="text"
+                   name="phone"
+                   class="form-control"
+                   value="{{ doctor.phone }}"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Email</label>
+
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   value="{{ doctor.email }}"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Consultation Fee</label>
+
+            <input type="number"
+                   name="consultation_fee"
+                   class="form-control"
+                   value="{{ doctor.consultation_fee }}"
+                   required>
+
+        </div>
+
+        <div class="mb-4">
+
+            <label>Department</label>
+
+            <select name="department_id"
+                    class="form-control"
+                    required>
+
+                {% for department in departments %}
+
+                <option value="{{ department.department_id }}"
+                    {% if doctor.department.department_id == department.department_id %}
+                        selected
+                    {% endif %}
+                >
+
+                    {{ department.department_name }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <button class="btn btn-success w-100 p-3 rounded-4">
+
+            Update Doctor
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    💰 Billing Management
+</h1>
+
+<div class="page-card">
+
+    <table class="table table-hover align-middle">
+
+        <thead>
+
+            <tr>
+
+                <th>Bill ID</th>
+                <th>Appointment ID</th>
+                <th>Consultation</th>
+                <th>Medicine</th>
+                <th>Lab</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for bill in bills %}
+
+            <tr>
+
+                <td>
+                    {{ bill.bill_id }}
+                </td>
+
+                <td>
+                    {{ bill.appointment.appointment_id }}
+                </td>
+
+                <td>
+                    ₹ {{ bill.consultation_fee }}
+                </td>
+
+                <td>
+                    ₹ {{ bill.medicine_charges }}
+                </td>
+
+                <td>
+                    ₹ {{ bill.lab_charges }}
+                </td>
+
+                <td>
+                    <strong>
+                        ₹ {{ bill.total_amount }}
+                    </strong>
+                </td>
+
+                <td>
+
+                    {% if bill.payment_status == "Paid" %}
+
+                        <span class="badge bg-success">
+                            Paid
+                        </span>
+
+                    {% else %}
+
+                        <span class="badge bg-danger">
+                            Pending
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if bill.payment_status != "Paid" %}
+
+                        <a href="/update-bill-status/{{ bill.bill_id }}/Paid/"
+                           class="btn btn-success btn-sm">
+
+                            Mark Paid
+
+                        </a>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

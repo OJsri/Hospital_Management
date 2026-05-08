@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1>
+        📋 Medical Records
+    </h1>
+
+    <a href="/add-medical-record/"
+       class="btn btn-primary px-4 py-2 rounded-4">
+
+        ➕ Add Medical Record
+
+    </a>
+
+</div>
+
+<div class="page-card">
+
+    <table class="table table-hover align-middle">
+
+        <thead>
+
+            <tr>
+
+                <th>Record ID</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Diagnosis</th>
+                <th>Treatment</th>
+                <th>Notes</th>
+                <th>Date</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for record in records %}
+
+            <tr>
+
+                <td>
+                    {{ record.record_id }}
+                </td>
+
+                <td>
+                    {{ record.patient.full_name }}
+                </td>
+
+                <td>
+                    {{ record.doctor.full_name }}
+                </td>
+
+                <td>
+                    {{ record.diagnosis }}
+                </td>
+
+                <td>
+                    {{ record.treatment }}
+                </td>
+
+                <td>
+                    {{ record.notes }}
+                </td>
+
+                <td>
+                    {{ record.record_date }}
+                </td>
+
+                <td>
+
+                    <a href="/delete-medical-record/{{ record.record_id }}/"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Delete medical record?')">
+
+                        🗑 Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

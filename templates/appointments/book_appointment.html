@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🏥 Book Appointment
+</h1>
+
+<div class="page-card">
+
+    {% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Select Patient</label>
+            <select name="patient_id"
+                    class="form-control"
+                    required>
+                {% for patient in patients %}
+                    <option value="{{ patient.patient_id }}">
+                        {{ patient.full_name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Select Doctor</label>
+            <select name="doctor_id"
+                    class="form-control"
+                    required>
+                {% for doctor in doctors %}
+                    <option value="{{ doctor.doctor_id }}">
+                        {{ doctor.full_name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Appointment Date</label>
+            <input type="date"
+                   name="appointment_date"
+                   class="form-control"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label>Appointment Time</label>
+            <input type="text"
+                   name="appointment_time"
+                   class="form-control"
+                   placeholder="e.g. 11:00 AM"
+                   required>
+        </div>
+
+        <button class="btn btn-primary w-100 p-3 rounded-4">
+            Book Appointment
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

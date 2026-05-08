@@ -1,0 +1,12 @@
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+
+    path('', include('appointments.urls')),
+    path('', include('patients.urls')),
+    path('', include('doctors.urls')),
+    path('', include('billing.urls')),
+    path('', include('medical_records.urls')),
+]

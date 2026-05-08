@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    🏥 Hospital Management Dashboard
+</h1>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card p-4 shadow-sm rounded-4">
+            <h5>Total Patients</h5>
+            <h1>{{ total_patients }}</h1>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 shadow-sm rounded-4">
+            <h5>Total Doctors</h5>
+            <h1>{{ total_doctors }}</h1>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 shadow-sm rounded-4">
+            <h5>Total Appointments</h5>
+            <h1>{{ total_appointments }}</h1>
+        </div>
+    </div>
+
+    <div class="col-md-6 mt-4">
+        <div class="card p-4 shadow-sm rounded-4">
+            <h5>Total Revenue</h5>
+            <h1>₹ {{ total_revenue }}</h1>
+        </div>
+    </div>
+
+    <div class="col-md-6 mt-4">
+        <div class="card p-4 shadow-sm rounded-4">
+            <h5>Pending Bills</h5>
+            <h1>{{ pending_bills }}</h1>
+        </div>
+    </div>
+
+    <div class="col-md-12 mt-4">
+        <a href="/book-appointment/"
+           class="btn btn-primary w-100 p-3 rounded-4">
+            ➕ Book New Appointment
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

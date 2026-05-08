@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="mb-4">
+    ➕ Add Medical Record
+</h1>
+
+<div class="page-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+
+            <label>Record ID</label>
+
+            <input type="number"
+                   name="record_id"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Patient</label>
+
+            <select name="patient_id"
+                    class="form-control"
+                    required>
+
+                {% for patient in patients %}
+
+                <option value="{{ patient.patient_id }}">
+
+                    {{ patient.full_name }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Doctor</label>
+
+            <select name="doctor_id"
+                    class="form-control"
+                    required>
+
+                {% for doctor in doctors %}
+
+                <option value="{{ doctor.doctor_id }}">
+
+                    {{ doctor.full_name }}
+
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Diagnosis</label>
+
+            <input type="text"
+                   name="diagnosis"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Treatment</label>
+
+            <input type="text"
+                   name="treatment"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Notes</label>
+
+            <textarea name="notes"
+                      class="form-control"
+                      rows="4"
+                      required></textarea>
+
+        </div>
+
+        <div class="mb-4">
+
+            <label>Record Date</label>
+
+            <input type="date"
+                   name="record_date"
+                   class="form-control"
+                   required>
+
+        </div>
+
+        <button class="btn btn-primary w-100 p-3 rounded-4">
+
+            Save Medical Record
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
